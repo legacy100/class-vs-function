@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% load static %}
+<a href="{% url 'index' %}">Go back</a>
+<small>Updated {{product.updated|timesince}} ago</small>
+<div>
+    <form action="{% url 'update' product.id %}" method="POST">
+        {% csrf_token %}
+
+        <input type="text" name="name" value="{{product.name}}">
+        <input type="text" name="price" value="{{product.price}}">
+        <input type="text" name="stock" value="{{product.stock}}">
+        <img src="{% static 'images/' %}" alt="" name="image_url" value="{{product.image_url}}">
+
+        <input type="submit" value="Update Products"/>
+    </form>
+</div>
+<hr>
+
+
+{% endblock content %}
+

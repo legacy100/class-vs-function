@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load static %}
+<div>
+    <h1>Products</h1>
+    <div>
+        <a href="{% url 'add' %}">Add Product</a>
+    </div>
+</div>
+<!-- <div>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col">
+              <input type="text" class="form-control" name="name" placeholder="Item" aria-label="First name">
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" name="price" placeholder="Price" aria-label="Last name">
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" name="stock" placeholder="No in Stock" aria-label="Last name">
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" name="stock" placeholder="No in Stock" aria-label="Last name">
+                <img src="{% static 'images/' %}" alt="">
+            </div>
+            
+            <div>
+                <input type="submit" value="Add Products">
+            </div>
+            
+          </div>
+    </form>
+</div>
+<br>
+<hr> -->
+<br>
+<div class="row">
+    {% for product in products %}
+    <div class="col">
+        <div class="card" style="width: 14rem;">
+            <img src="{{ product.image_url }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <a href="{% url 'update' product.id %}"><h5 class="card-title">{{ product.name }}</h5></a>
+                <p class="card-text">${{product.price}}</p>
+                <p class="card-text">{{product.stock}} inventory available</p>
+                <a href="#" class="btn btn-primary"> Add to Cart</a>
+            </div>
+        </div>
+        <br>
+        <hr>
+        <br>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock content %}
